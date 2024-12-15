@@ -19,6 +19,11 @@ Andrea Galassi, Marco Lippi, and Paolo Torroni.
 \newblock Attention in natural language processing.
 \newblock {\em IEEE Transactions on Neural Networks and Learning Systems}, 32(10):4291--4308, 2021.
 
+\bibitem{information}
+Xie He, Arash~Habibi Lashkari, Nikhill Vombatkere, and Dilli~Prasad Sharma.
+\newblock Authorship attribution methods, challenges, and future research directions: A comprehensive survey.
+\newblock {\em Information}, 15(3), 2024.
+
 \bibitem{psychec}
 Leandro T.~C. Melo, Rodrigo~G. Ribeiro, Breno C.~F. Guimar\~{a}es, and Fernando Magno Quint\~{a}o Pereira.
 \newblock Type inference for c: Applications to the static analysis of incomplete programs.

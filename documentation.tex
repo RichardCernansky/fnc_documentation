@@ -12,6 +12,10 @@
 \usepackage{xcolor}
 \usepackage{subcaption} % For subfigures
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{adjustbox}
@@ -76,6 +80,17 @@ This section answers the following questions:
 
 \subsection{What techniques are utilized to process source code for extracting its unique information?}
 
+In the paper \cite{information}, authors present division of features based on the method they are extracted with:
+
+\begin{itemize}
+    \item Stylometric features
+    \item N-gram features
+    \item Graph based features
+    \item Behavioral features
+    \item Neural Networks Generated Representations of Source Code or Features
+\end{itemize}
+
+
 
 \subsection{What is an Abstract syntax tree?}
 \quad Abstract syntax tree (AST) is a tree-based representation of source code, where nodes represent various elements of the source code and paths represent relationships of the structure. AST is an inseparable part of compilation process for many reasons. It is used as an intermediate representation of program utilized for optimization and generation of machine code. Nodes of the tree can be either internal (non-leaf) or leafs. Internal nodes define the program's constructs or operations for their children. Leaf nodes store the actual textual value. Let's see the following definition.
@@ -114,6 +129,7 @@ TranslationUnit
             |--IdentifierName `a`
             |--IdentifierName `b`
 \end{verbatim}
+\label{verbatim:AST_example}
 
 \subsection{What are the possibilities for extracting information from an AST?}
 Features divide into 4 main kinds according to the nature of the information extracted from the Abstract Syntax Tree (AST):
@@ -171,6 +187,47 @@ can be stated as learning the information connection between the path contexts a
 \section{Exploratory data analysis}
 \label{item:EDA}
 The dataset of functions used to train the model consists of extracted C language solutions of the Google Code Jam and Codeforces programming contests. The datasets of Google Code Jam is available on this link and Codeforces on this link.
+
+\subsection{Our data extraction method}
+
+Having the datasets of C functions ready, we could proceed with AST construction.
+We have chosen the Psyche-C compiler to generate the ASCII representation of the 
+tree (\ref{verbatim:AST_example}) and implemented a straightforward algorithm in Python to parse it into an in-memory tree structure for real-time processing.
+
+\begin{algorithm}
+    \caption{Produce Tree from ASCII Representation}
+    \begin{algorithmic}[1]
+    \Procedure{ProduceTree}{lines}
+        \State $root \gets$ New Node($-1$, "TranslationUnit", "", "")
+        \State $current \gets root$
+        \State $line\_index \gets 1$
+        \While{$line\_index < \text{length of lines}$}
+            \State $b\_i \gets current.branching\_idx$
+            \State $line\_b\_i \gets \text{Find}(|--, lines[line\_index])$
+            \If{$line\_b\_i > b\_i$}
+                \State $new\_node \gets \text{ProcessLine}(lines[line\_index])$
+                \State AddChild($current, new\_node$)
+                \State $new\_node.parent \gets current$
+                \State $current \gets new\_node$
+                \State $line\_index \gets line\_index + 1$
+            \ElsIf{$line\_b\_i = b\_i$}
+                \State $new\_node \gets \text{ProcessLine}(lines[line\_index])$
+                \State AddChild($current.parent, new\_node$)
+                \State $new\_node.parent \gets current.parent$
+                \State $current \gets new\_node$
+                \State $line\_index \gets line\_index + 1$
+            \Else
+                \State $current \gets current.parent$
+            \EndIf
+        \EndWhile
+        \State \Return $root$
+    \EndProcedure
+    \end{algorithmic}
+    \end{algorithm}
+    
+From the tree constructed like this, we can extract the leaf node-to-node paths, that we will 
+use for training the attention-weight neural network classifier.
+
 
 \subsection{The Nature of the Data}
 \label{item:nature_of_data}
@@ -233,11 +290,11 @@ The Shapiro-Wilk test was applied to detect whether the data follows a normal di
         \hline
         \textbf{Statistic} & \textbf{P-value} & \textbf{Conclusion} \\
         \hline
-        W = 0.2354 & $1.5252 \times 10^{-52}$ & Data is not normally distributed ($p < 0.05$) \\
+        W = 0.4517 & $9.4569e-24$ & Data is not normally distributed ($p < 0.05$) \\
         \hline
         \textbf{Mean} & \textbf{Standard Deviation} & \textbf{---} \\
         \hline
-        22.7430 & 65.4305 & --- \\
+        40.9468 & 70.7742 & --- \\
         \hline
     \end{tabular}
 \end{table}
@@ -264,11 +321,11 @@ to just split by the whitespace characters and count the number of words.
         \hline
         \textbf{Statistic} & \textbf{P-value} & \textbf{Conclusion} \\
         \hline
-        KS = 0.2482 & $0.0000 \times 10^{0}$ & Data is not normally distributed ($p < 0.05$) \\
+        KS = 0.2235 & $0.0000e+00$ & Data is not normally distributed ($p < 0.05$) \\
         \hline
         \textbf{Mean} & \textbf{Standard Deviation} & \textbf{---} \\
         \hline
-        36.6910 & 45.8380 & --- \\
+        38.0590 & 40.9499 & --- \\
         \hline
     \end{tabular}
 \end{table}
@@ -282,7 +339,7 @@ to understand the structural complexity of the dataset \ref{item:structural}.
     \centering
     \includegraphics[width=16cm, height=9cm]{figures/ast_depths_merged.pdf}
     \caption{Distribution of function's AST depths.}
-    \label{fig:func_lengths_distr_merged}
+    \label{fig:ast_depths_merged}
 \end{figure}
 
 \begin{table}[h!]
@@ -293,11 +350,11 @@ to understand the structural complexity of the dataset \ref{item:structural}.
         \hline
         \textbf{Statistic} & \textbf{P-value} & \textbf{Conclusion} \\
         \hline
-        KS = 0.1371 & $0.0000 \times 10^{0}$ & Data is not normally distributed ($p < 0.05$) \\
+        KS = 0.1334 & $7.7980e-120$ & Data is not normally distributed ($p < 0.05$) \\
         \hline
         \textbf{Mean} & \textbf{Standard Deviation} & \textbf{---} \\
         \hline
-        9.3679 & 2.8933 & --- \\
+        9.6509 & 2.7808 & --- \\
         \hline
     \end{tabular}
 \end{table}
@@ -311,7 +368,7 @@ about structural complexity.
     \centering
     \includegraphics[width=16cm, height=9cm]{figures/num_nodes_merged.pdf}
     \caption{Distribution of function's AST Number of nodes.}
-    \label{fig:func_lengths_distr_merged}
+    \label{fig:ast_num_nodes_merged}
 \end{figure}
 
 \begin{table}[h!]
@@ -322,11 +379,11 @@ about structural complexity.
         \hline
         \textbf{Statistic} & \textbf{P-value} & \textbf{Conclusion} \\
         \hline
-        KS = 0.2484 & $0.0000 \times 10^{0}$ & Data is not normally distributed ($p < 0.05$) \\
+        KS =0.2203 & $0.0000e+00$ & Data is not normally distributed ($p < 0.05$) \\
         \hline
         \textbf{Mean} & \textbf{Standard Deviation} & \textbf{---} \\
         \hline
-        76.7331 & 96.9949 & --- \\
+        79.6542 & 85.6390 & --- \\
         \hline
     \end{tabular}
 \end{table}
@@ -345,13 +402,13 @@ that encode the natural-language based features to the numerical ones.
         \hline
         \textbf{Metric} & \textbf{Count} \\
         \hline
-        Number of tags (function names) in total & 970 \\
+        Number of tags (function names) in total & 190 \\
         \hline
-        Number of unique terminal node Data & 10055 \\
+        Number of unique terminal node Data & 4267 \\
         \hline
-        Number of unique node-to-node paths & 40520 \\
+        Number of unique node-to-node paths & 19285 \\
         \hline
-        Number of unique path-contexts & 723003 \\
+        Number of unique path-contexts & 283881 \\
         \hline
     \end{tabular}
 \end{table}
@@ -410,7 +467,7 @@ This foward process is depicted in the following flowchart:
     \centering
     \includegraphics[width=12cm, height=7cm]{figures/code2vec_model_visual.png}
     \caption{Code2vec \cite{code2vec} neural network model flowchart.}
-    \label{fig:func_lengths_distr_merged}
+    \label{fig:code2vec_model_visual}
 \end{figure}
 
 
@@ -644,7 +701,7 @@ is that the model started to perfoms worse  when the size of class in test set s
 One could say that size of 3 is too small to take it as relevant information, but as the heat map is average
 across the folds, we can interpret it as average accuracy of 5*3 = 15 tests. Going closer to size of test set = 2
 the blue spots indicating low performence start to appear even more. The whole heatmap is available to see in the attachments. Also the best
-performances were reached by the functions with names of standard algorithms like quicksort, mergesort, dfs, backtrack or gcd. 
+performances were reached by the functions with names of standard algorithms like quicksort, mergesort, dfs, backtrack or gcd (greatest common divisor). 
 
 
 \begin{figure}[H]
@@ -661,10 +718,45 @@ calculated the average accuracy and visualized the results using bar
 plots. This allowed us to compare the model's performance across 
 different feature ranges and identify any variations. The overall 
 model accuracy, represented by the red dashed line, serves as a 
-reference for interpreting the results.
+reference for interpreting the results. \\
 
+\subsubsection{Quality over quantity}
 
+Looking at the bin accuracies, we can say that even when having just 1000 functions in 
+bin 40-59 (derived from figure \ref{fig:func_lengths_distr_merged}) we reached around 14\% 
+higher accuracy on than on bin 0-19, whose cardinality is more than 2,5 larger.
+This confirms that rather than on more functions with a certain name for the classification
+code2vec model performs better on longer functions which provide more sophisticated 
+node-to-node paths for it to learn from. The accuracies of 1 of the bins located on the right side of 
+the plot should be ignored as the size of the bins is not statistically significant. The same 
+applies to other plots as well.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm, height=5cm]{figures/testing/bins/num_tokens_20_bin_accuracies.pdf}
+    \caption{Average accuracies across folds in number of tokens in bins, bin\_size=20}
+    \label{fig:bins_tokens}
+\end{figure}
+
+This was confirmed in the next plot concerning bins of number of nodes in the AST where in the bin 20-39 whose size is 
+around 2400 pieces of functions has 15\% lower accuracy than the bin 80-99 containing 700 functions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm, height=5cm]{figures/testing/bins/num_nodes_20_bin_accuracies.pdf}
+    \caption{Average accuracies across folds in number of nodes in bins, bin\_size=20}
+    \label{fig:bins_nodes}
+\end{figure}
+
+When interpreting the AST depths, the highest points of accuracy were reached by higher depth trees from 12-17
+while their cardinality is only a 20\% of those with AST depth spreading from 4-11.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm, height=5cm]{figures/testing/bins/ast_depth_2_bin_accuracies.pdf}
+    \caption{Average accuracies across folds in ast depth in bins, bin\_size=2}
+    \label{fig:bins_depth}
+\end{figure}
 
 
 \section{Extensive Data Preprocessing}
