@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.4)  15 DEC 2024 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.4)  15 DEC 2024 18:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -448,9 +448,6 @@ LaTeX Warning: Label `fig:func_lengths_distr_merged' multiply defined.
 
 LaTeX Warning: Label `fig:func_lengths_distr_merged' multiply defined.
 
-
-LaTeX Warning: Label `fig:func_lengths_distr_merged' multiply defined.
-
 )
 \openout1 = `documentation.aux'.
 
@@ -605,167 +602,167 @@ Package textcomp Info: Symbol \textrangle not provided by
 (textcomp)             Default family used instead on input line 156.
  [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 Chapter 2.
-<figures/functionsASTs_merged_freq_histogram.pdf, id=161, 1445.4pt x 578.16pt>
-File: figures/functionsASTs_merged_freq_histogram.pdf Graphic file (type pdf)
-<use figures/functionsASTs_merged_freq_histogram.pdf>
-Package pdftex.def Info: figures/functionsASTs_merged_freq_histogram.pdf  used on input line 217.
-(pdftex.def)             Requested size: 455.23724pt x 256.06737pt.
+<figures/names_merged.pdf, id=165, 1445.4pt x 578.16pt>
+File: figures/names_merged.pdf Graphic file (type pdf)
+<use figures/names_merged.pdf>
+Package pdftex.def Info: figures/names_merged.pdf  used on input line 218.
+(pdftex.def)             Requested size: 455.23724pt x 227.61641pt.
 
-Overfull \hbox (2.26935pt too wide) in paragraph at lines 217--218
+Overfull \hbox (2.26935pt too wide) in paragraph at lines 218--219
  [][] 
  []
 
 [4
 
 ]
-<figures/FOCUSED_functionsASTs_merged_length_histogram.pdf, id=174, 867.24pt x 433.62pt>
-File: figures/FOCUSED_functionsASTs_merged_length_histogram.pdf Graphic file (type pdf)
-<use figures/FOCUSED_functionsASTs_merged_length_histogram.pdf>
-Package pdftex.def Info: figures/FOCUSED_functionsASTs_merged_length_histogram.pdf  used on input line 252.
+<figures/ast_length_merged.pdf, id=178, 867.24pt x 433.62pt>
+File: figures/ast_length_merged.pdf Graphic file (type pdf)
+<use figures/ast_length_merged.pdf>
+Package pdftex.def Info: figures/ast_length_merged.pdf  used on input line 253.
 (pdftex.def)             Requested size: 455.24167pt x 256.085pt.
 
-Overfull \hbox (2.27377pt too wide) in paragraph at lines 252--253
+Overfull \hbox (2.27377pt too wide) in paragraph at lines 253--254
  [][] 
  []
 
-[5 <./figures/functionsASTs_merged_freq_histogram.pdf>]
-<figures/ast_depths_merged.pdf, id=260, 722.7pt x 433.62pt>
+[5 <./figures/names_merged.pdf>]
+<figures/ast_depths_merged.pdf, id=245, 722.7pt x 433.62pt>
 File: figures/ast_depths_merged.pdf Graphic file (type pdf)
 <use figures/ast_depths_merged.pdf>
-Package pdftex.def Info: figures/ast_depths_merged.pdf  used on input line 282.
+Package pdftex.def Info: figures/ast_depths_merged.pdf  used on input line 283.
 (pdftex.def)             Requested size: 455.24826pt x 256.085pt.
 
-Overfull \hbox (2.28036pt too wide) in paragraph at lines 282--283
+Overfull \hbox (2.28036pt too wide) in paragraph at lines 283--284
  [][] 
  []
 
-[6 <./figures/FOCUSED_functionsASTs_merged_length_histogram.pdf>]
-<figures/num_nodes_merged.pdf, id=305, 722.7pt x 433.62pt>
+[6 <./figures/ast_length_merged.pdf>]
+<figures/num_nodes_merged.pdf, id=291, 722.7pt x 433.62pt>
 File: figures/num_nodes_merged.pdf Graphic file (type pdf)
 <use figures/num_nodes_merged.pdf>
-Package pdftex.def Info: figures/num_nodes_merged.pdf  used on input line 311.
+Package pdftex.def Info: figures/num_nodes_merged.pdf  used on input line 312.
 (pdftex.def)             Requested size: 455.24826pt x 256.085pt.
 
-Overfull \hbox (2.28036pt too wide) in paragraph at lines 311--312
+Overfull \hbox (2.28036pt too wide) in paragraph at lines 312--313
  [][] 
  []
 
 [7 <./figures/ast_depths_merged.pdf>] [8 <./figures/num_nodes_merged.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 403--407
+Underfull \hbox (badness 10000) in paragraph at lines 404--408
 
  []
 
-<figures/code2vec_model_visual.png, id=394, 529.98pt x 301.125pt>
+<figures/code2vec_model_visual.png, id=379, 529.98pt x 301.125pt>
 File: figures/code2vec_model_visual.png Graphic file (type png)
 <use figures/code2vec_model_visual.png>
-Package pdftex.def Info: figures/code2vec_model_visual.png  used on input line 410.
+Package pdftex.def Info: figures/code2vec_model_visual.png  used on input line 411.
 (pdftex.def)             Requested size: 341.43416pt x 199.17502pt.
 [9]
-Overfull \hbox (4.91794pt too wide) in alignment at lines 417--421
+Overfull \hbox (4.91794pt too wide) in alignment at lines 418--422
  [] [] [] [] 
  []
 
 
-Overfull \hbox (4.91794pt too wide) in alignment at lines 421--425
+Overfull \hbox (4.91794pt too wide) in alignment at lines 422--426
  [] [] [] [] 
  []
 
 
-Underfull \hbox (badness 4024) in paragraph at lines 432--432
+Underfull \hbox (badness 4024) in paragraph at lines 433--433
 []|\IL2/ptm/m/n/10 value[]embedding (Em-bed-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--433
+Underfull \hbox (badness 10000) in paragraph at lines 433--434
 []|\IL2/ptm/m/n/10 value1[]input[0][0],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 435--435
 []|\IL2/ptm/m/n/10 path[]embedding (Em-bed-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
 []|\IL2/ptm/m/n/10 value[]embedding[0][0],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
 \IL2/ptm/m/n/10 path[]embedding[0][0],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 442--442
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 []|\IL2/ptm/m/n/10 weighted[]context[]layer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 444--444
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 []|\IL2/ptm/m/n/10 tag[]embedding[]matrix[]layer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 444--444
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 \IL2/ptm/m/n/10 (TagEm-bed-ding-Ma-
  []
 
 
-Overfull \hbox (4.91794pt too wide) in alignment at lines 425--448
+Overfull \hbox (4.91794pt too wide) in alignment at lines 426--449
  [] [] [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--486
+Underfull \hbox (badness 10000) in paragraph at lines 465--487
 
  []
 
 [10 <./figures/code2vec_model_visual.png>] [11] [12]
 Chapter 3.
-<figures/training/learning_curve_fold_1.png, id=443, 867.24pt x 433.62pt>
+<figures/training/learning_curve_fold_1.png, id=428, 867.24pt x 433.62pt>
 File: figures/training/learning_curve_fold_1.png Graphic file (type png)
 <use figures/training/learning_curve_fold_1.png>
-Package pdftex.def Info: figures/training/learning_curve_fold_1.png  used on input line 574.
+Package pdftex.def Info: figures/training/learning_curve_fold_1.png  used on input line 575.
 (pdftex.def)             Requested size: 181.18439pt x 90.58649pt.
-<figures/training/learning_curve_fold_2.png, id=444, 867.24pt x 433.62pt>
+<figures/training/learning_curve_fold_2.png, id=429, 867.24pt x 433.62pt>
 File: figures/training/learning_curve_fold_2.png Graphic file (type png)
 <use figures/training/learning_curve_fold_2.png>
-Package pdftex.def Info: figures/training/learning_curve_fold_2.png  used on input line 580.
+Package pdftex.def Info: figures/training/learning_curve_fold_2.png  used on input line 581.
 (pdftex.def)             Requested size: 181.18439pt x 90.58649pt.
-<figures/training/learning_curve_fold_3.png, id=445, 867.24pt x 433.62pt>
+<figures/training/learning_curve_fold_3.png, id=430, 867.24pt x 433.62pt>
 File: figures/training/learning_curve_fold_3.png Graphic file (type png)
 <use figures/training/learning_curve_fold_3.png>
-Package pdftex.def Info: figures/training/learning_curve_fold_3.png  used on input line 586.
+Package pdftex.def Info: figures/training/learning_curve_fold_3.png  used on input line 587.
 (pdftex.def)             Requested size: 181.18439pt x 90.58649pt.
-<figures/training/learning_curve_fold_4.png, id=446, 867.24pt x 433.62pt>
+<figures/training/learning_curve_fold_4.png, id=431, 867.24pt x 433.62pt>
 File: figures/training/learning_curve_fold_4.png Graphic file (type png)
 <use figures/training/learning_curve_fold_4.png>
-Package pdftex.def Info: figures/training/learning_curve_fold_4.png  used on input line 594.
+Package pdftex.def Info: figures/training/learning_curve_fold_4.png  used on input line 595.
 (pdftex.def)             Requested size: 181.18439pt x 90.58649pt.
-<figures/training/learning_curve_fold_5.png, id=447, 867.24pt x 433.62pt>
+<figures/training/learning_curve_fold_5.png, id=432, 867.24pt x 433.62pt>
 File: figures/training/learning_curve_fold_5.png Graphic file (type png)
 <use figures/training/learning_curve_fold_5.png>
-Package pdftex.def Info: figures/training/learning_curve_fold_5.png  used on input line 600.
+Package pdftex.def Info: figures/training/learning_curve_fold_5.png  used on input line 601.
 (pdftex.def)             Requested size: 181.18439pt x 90.58649pt.
 [13
 
  <./figures/training/learning_curve_fold_1.png> <./figures/training/learning_curve_fold_2.png> <./figures/training/learning_curve_fold_3.png> <./figures/training/learning_curve_fold_4.png> <./figures/training/learning_curve_fold_5.png>]
-<figures/testing/agg_average_metrics_plot.png, id=458, 578.16pt x 361.35pt>
+<figures/testing/agg_average_metrics_plot.png, id=445, 578.16pt x 361.35pt>
 File: figures/testing/agg_average_metrics_plot.png Graphic file (type png)
 <use figures/testing/agg_average_metrics_plot.png>
-Package pdftex.def Info: figures/testing/agg_average_metrics_plot.png  used on input line 620.
+Package pdftex.def Info: figures/testing/agg_average_metrics_plot.png  used on input line 636.
 (pdftex.def)             Requested size: 227.61641pt x 113.80931pt.
-<figures/heatmap_snippet.png, id=459, 1120.185pt x 332.24126pt>
+<figures/heatmap_snippet.png, id=447, 468.75125pt x 210.7875pt>
 File: figures/heatmap_snippet.png Graphic file (type png)
 <use figures/heatmap_snippet.png>
-Package pdftex.def Info: figures/heatmap_snippet.png  used on input line 630.
-(pdftex.def)             Requested size: 455.24496pt x 170.71832pt.
+Package pdftex.def Info: figures/heatmap_snippet.png  used on input line 652.
+(pdftex.def)             Requested size: 455.2389pt x 170.72086pt.
 
-Overfull \hbox (2.27707pt too wide) in paragraph at lines 630--631
+Overfull \hbox (2.27101pt too wide) in paragraph at lines 652--653
  [][] 
  []
 
-(./documentation.bbl [14 <./figures/testing/agg_average_metrics_plot.png> <./figures/heatmap_snippet.png>]) [15
+[14 <./figures/testing/agg_average_metrics_plot.png> <./figures/heatmap_snippet.png>] (./documentation.bbl [15]) [16
 
 ] (./documentation.aux)
  ***********
@@ -777,21 +774,21 @@ L3 programming layer <2024-02-20>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `documentation.out' has not changed.
-(rerunfilecheck)             Checksum: 546B8520E9B7D48A84305F93707E1FF7;5292.
+(rerunfilecheck)             Checksum: 672582A098EB88FF97D0F802D7A0CB72;5389.
  ) 
 Here is how much of TeX's memory you used:
- 15395 strings out of 474116
- 249490 string characters out of 5743682
+ 15399 strings out of 474116
+ 249205 string characters out of 5743682
  1948187 words of memory out of 5000000
- 37398 multiletter control sequences out of 15000+600000
+ 37401 multiletter control sequences out of 15000+600000
  591271 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,80p,734b,620s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on documentation.pdf (17 pages, 724743 bytes).
+Output written on documentation.pdf (18 pages, 706894 bytes).
 PDF statistics:
- 560 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
- 104 named destinations out of 1000 (max. 500000)
- 269 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 551 PDF objects out of 1000 (max. 8388607)
+ 337 compressed objects within 4 object streams
+ 105 named destinations out of 1000 (max. 500000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 

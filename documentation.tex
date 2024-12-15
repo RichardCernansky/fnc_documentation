@@ -173,6 +173,7 @@ can be stated as learning the information connection between the path contexts a
 The dataset of functions used to train the model consists of extracted C language solutions of the Google Code Jam and Codeforces programming contests. The datasets of Google Code Jam is available on this link and Codeforces on this link.
 
 \subsection{The Nature of the Data}
+\label{item:nature_of_data}
 As the dataset originates from competitive programming contests, its characteristics align with the expected patterns of this domain. However, there are certain limitations and challenges that must be considered when working with such data. Based on our observations, the following points should be carefully evaluated:
 
 \begin{enumerate}
@@ -214,7 +215,7 @@ An initial analysis of the function data can involve visualizing distributions o
 \subsubsection{Function name frequency}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=16cm, height=9cm]{figures/functionsASTs_merged_freq_histogram.pdf}
+    \includegraphics[width=16cm, height=8cm]{figures/names_merged.pdf}
     \caption{Distribution of function name frequencies.}
     \label{fig:func_freq_merged}
 \end{figure}
@@ -249,7 +250,7 @@ to just split by the whitespace characters and count the number of words.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=16cm, height=9cm]{figures/FOCUSED_functionsASTs_merged_length_histogram.pdf}
+    \includegraphics[width=16cm, height=9cm]{figures/ast_length_merged.pdf}
     \caption{Distribution of function lengths measured in tokens.}
     \label{fig:func_lengths_distr_merged}
 \end{figure}
@@ -606,31 +607,63 @@ The following charts depict learning curves for train and validation accuracy fo
     \label{fig:all_folds}
 \end{figure}
 
-From the plots, we can say that the model achieved overfit after 8 epochs
-(the model is memorizing the training data rather than generalizing).
-Learning patterns in all 5 folds are similar, this indicates consistent
+From the plots, we can say that the model started to deviate training and 
+validation accuracy after 3 epochs achieving overfit and completely stops improving after 8 epochs.
+(the model memorizes patterns and noise from the training data and fails to generalize on unseen data).
+Learning patterns in all 5 folds are similar and metrics in fig. \ref{fig:average_testing_metrics}
+showed low standard deviation (around 1-2\%), this indicates consistent
 performance across different data splits, suggesting the model is robust.
 However, validation loss and validation accuracy curves significantly diverge from
-training curves. We suppose, this is due to our insufficient training data which is limited
-as we are limited by our datasets and only C programming language functions.
+training curves. We suppose, this is due to following:
+\begin{itemize}
 
-% average metrics table
-\begin{figure}[h!]
+\item Our insufficient training data which is limited as we are limited by our datasets and only C programming language functions.
+\item Non-uniformly distributed data mainly in terms of the names of functions (but also due to other features see \ref{item:nature_of_data})
+\item Noise in the data - f. e. two almost identical functions with slightly different names or the names of the variables (feaf node data)
+\item Droput and Weight Decay not implemented for overfit prevention
+
+
+\end{itemize}
+
+In later section, we will try to reduce this overfit by preprocessing the data 
+with taking into account these assumptions.
+
+\subsection{Testing}
+
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=8cm, height=4cm]{figures/testing/agg_average_metrics_plot.png}
     \caption{Average testing metrics across folds.}
     \label{fig:average_testing_metrics}
 \end{figure}
 
+For testing visualization purposes, we have also chosen accuracy, precision, f1 \textbf{metrics average across the folds} heatmap (respectively in fig. \ref{fig:heatmap_snippet}) because 
+confusion matrix for all the classes is hard to analyze with hundred of classes. What interested us,
+is that the model started to perfoms worse  when the size of class in test set started to be lower than 4. 
+One could say that size of 3 is too small to take it as relevant information, but as the heat map is average
+across the folds, we can interpret it as average accuracy of 5*3 = 15 tests. Going closer to size of test set = 2
+the blue spots indicating low performence start to appear even more. The whole heatmap is available to see in the attachments. Also the best
+performances were reached by the functions with names of standard algorithms like quicksort, mergesort, dfs, backtrack or gcd. 
 
-\subsubsection{Testing}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=16cm, height=6cm]{figures/heatmap_snippet.png}
     \caption{Snippet from heatmap of names as classes.}
-    \label{fig:func_lengths_distr_merged}
+    \label{fig:heatmap_snippet}
 \end{figure}
+
+To evaluate the model's performance on different subsets of the data, 
+we divided the dataset into bins based on specific features, such as 
+the number of nodes, AST depth, or token counts. For each bin, we 
+calculated the average accuracy and visualized the results using bar 
+plots. This allowed us to compare the model's performance across 
+different feature ranges and identify any variations. The overall 
+model accuracy, represented by the red dashed line, serves as a 
+reference for interpreting the results.
+
+
 
 
 
