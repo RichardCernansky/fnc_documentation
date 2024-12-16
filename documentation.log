@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.4)  16 DEC 2024 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.4)  16 DEC 2024 17:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -771,41 +771,41 @@ Package pdftex.def Info: figures/training/learning_curve_fold_5.png  used on inp
 [14
 
  <./figures/training/learning_curve_fold_1.png> <./figures/training/learning_curve_fold_2.png> <./figures/training/learning_curve_fold_3.png> <./figures/training/learning_curve_fold_4.png> <./figures/training/learning_curve_fold_5.png>]
-<figures/testing/agg_average_metrics_plot.png, id=467, 578.16pt x 361.35pt>
+<figures/testing/agg_average_metrics_plot.png, id=466, 578.16pt x 361.35pt>
 File: figures/testing/agg_average_metrics_plot.png Graphic file (type png)
 <use figures/testing/agg_average_metrics_plot.png>
-Package pdftex.def Info: figures/testing/agg_average_metrics_plot.png  used on input line 727.
+Package pdftex.def Info: figures/testing/agg_average_metrics_plot.png  used on input line 728.
 (pdftex.def)             Requested size: 227.61641pt x 113.80931pt.
 <figures/heatmap_snippet.png, id=469, 468.75125pt x 210.7875pt>
 File: figures/heatmap_snippet.png Graphic file (type png)
 <use figures/heatmap_snippet.png>
-Package pdftex.def Info: figures/heatmap_snippet.png  used on input line 743.
+Package pdftex.def Info: figures/heatmap_snippet.png  used on input line 754.
 (pdftex.def)             Requested size: 455.2389pt x 170.72086pt.
 
-Overfull \hbox (2.27101pt too wide) in paragraph at lines 743--744
+Overfull \hbox (2.27101pt too wide) in paragraph at lines 754--755
  [][] 
  []
 
 [15 <./figures/testing/agg_average_metrics_plot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 748--756
+Underfull \hbox (badness 10000) in paragraph at lines 759--767
 
  []
 
 <figures/testing/bins/num_tokens_20_bin_accuracies.pdf, id=479, 867.24pt x 578.16pt>
 File: figures/testing/bins/num_tokens_20_bin_accuracies.pdf Graphic file (type pdf)
 <use figures/testing/bins/num_tokens_20_bin_accuracies.pdf>
-Package pdftex.def Info: figures/testing/bins/num_tokens_20_bin_accuracies.pdf  used on input line 770.
+Package pdftex.def Info: figures/testing/bins/num_tokens_20_bin_accuracies.pdf  used on input line 781.
 (pdftex.def)             Requested size: 227.62083pt x 142.26357pt.
 <figures/testing/bins/num_nodes_20_bin_accuracies.pdf, id=480, 867.24pt x 578.16pt>
 File: figures/testing/bins/num_nodes_20_bin_accuracies.pdf Graphic file (type pdf)
 <use figures/testing/bins/num_nodes_20_bin_accuracies.pdf>
-Package pdftex.def Info: figures/testing/bins/num_nodes_20_bin_accuracies.pdf  used on input line 780.
+Package pdftex.def Info: figures/testing/bins/num_nodes_20_bin_accuracies.pdf  used on input line 791.
 (pdftex.def)             Requested size: 227.62083pt x 142.26357pt.
 [16 <./figures/heatmap_snippet.png> <./figures/testing/bins/num_tokens_20_bin_accuracies.pdf>]
 <figures/testing/bins/ast_depth_2_bin_accuracies.pdf, id=561, 867.24pt x 578.16pt>
 File: figures/testing/bins/ast_depth_2_bin_accuracies.pdf Graphic file (type pdf)
 <use figures/testing/bins/ast_depth_2_bin_accuracies.pdf>
-Package pdftex.def Info: figures/testing/bins/ast_depth_2_bin_accuracies.pdf  used on input line 790.
+Package pdftex.def Info: figures/testing/bins/ast_depth_2_bin_accuracies.pdf  used on input line 801.
 (pdftex.def)             Requested size: 227.62083pt x 142.26357pt.
  (./documentation.bbl [17 <./figures/testing/bins/num_nodes_20_bin_accuracies.pdf> <./figures/testing/bins/ast_depth_2_bin_accuracies.pdf>]) [18
 
@@ -826,7 +826,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,9n,80p,734b,637s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on documentation.pdf (20 pages, 790023 bytes).
+Output written on documentation.pdf (20 pages, 790916 bytes).
 PDF statistics:
  803 PDF objects out of 1000 (max. 8388607)
  395 compressed objects within 4 object streams
