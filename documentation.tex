@@ -58,9 +58,16 @@ abstract abstract abstract
 
 \section{Motivation}
 
-In this thesis, we aim to analyze the performance of our re-implemented code2vec NN model, which utilizes an attention mechanism to process concatenated inputs to classify function under a certain name. The input to this model is derived from node-to-node features of functions' Abstract Syntax Trees (ASTs). The evaluation focuses on source code snippets written in the C programming language, sourced from datasets of competitive programming events.
+In this thesis, we aim to analyze the performance of our re-implemented 
+code2vec model, which utilizes an attention mechanism neural network to classify function 
+under a certain name. 
+The input to this model is derived from node-to-node features of 
+functions' Abstract Syntax Trees (ASTs). The evaluation focuses on source 
+code snippets written in the C programming language, sourced from datasets 
+of competitive programming events.
 
 \section{Domain Analysis}
+Note: Az v druhej casti, este sme sa nedohodli ci bude vystup klasifikacia mien alebo autorov.
 
 \section{Source code feature extraction}
 Source code is essentially just a text representation of the algorithm it
@@ -80,16 +87,29 @@ This section answers the following questions:
 
 \subsection{What techniques are utilized to process source code for extracting its unique information?}
 
-In the paper \cite{information}, authors present division of features based on the method they are extracted with:
+In the paper \cite{information}, authors present division of features based on the method they use for extraction: 
 
 \begin{itemize}
-    \item Stylometric features
-    \item N-gram features
-    \item Graph based features
-    \item Behavioral features
-    \item Neural Networks Generated Representations of Source Code or Features
-\end{itemize}
+    \item \textbf{Stylometric features:} 
+    They express the structural characters that represent the author’s preference for different state- ments, keywords, nesting sizes, etc.
+    \item \textbf{N-gram features:}
+    N-gram is a contiguous sequence of an n byte, character, or words extracted from the source. A sliding that has a fixed length generates 
+    the sequence.
+    \item \textbf{Graph based features:}
+    These capture underlying traits in the code such as deeply nesting code, control flow and data flow.
+    It includes : AST, Program Dependency Graph (PDG), Control Flow Graph (CFG), RFG.
+    \item \textbf{Behavioral features:}
+    This type completely different from the previous as it is not looking at the source code itself
+    but rather on the way that the programm of the source code communicates with the computer.
+    In this category there are dynamic features which collect runtime measurements as CPU and memory usage.
+    Instruction features that are retrieved from binaries and reflect code properties like registers or immediate operands.
+    \item \textbf{Neural Networks Generated Representations of Source Code or Features:}
+    Lastly, in recent years, neural networks have been increasingly utilized 
+    to generate representations (such as embeddings) of source code. This 
+    approach is also applied in this thesis, using AST analysis to provide 
+    input for the neural network.
 
+\end{itemize}
 
 
 \subsection{What is an Abstract syntax tree?}
@@ -665,11 +685,11 @@ The following charts depict learning curves for train and validation accuracy fo
 \end{figure}
 
 From the plots, we can say that the model started to deviate training and 
-validation accuracy after 3 epochs achieving overfit and completely stops improving after 8 epochs.
+validation accuracy after 3 epochs achieving overfit and completely stops improving after 9 epochs.
 (the model memorizes patterns and noise from the training data and fails to generalize on unseen data).
 Learning patterns in all 5 folds are similar and metrics in fig. \ref{fig:average_testing_metrics}
 showed low standard deviation (around 1-2\%), this indicates consistent
-performance across different data splits, suggesting the model is robust.
+performance across different data splits, suggesting the model is stable.
 However, validation loss and validation accuracy curves significantly diverge from
 training curves. We suppose, this is due to following:
 \begin{itemize}
@@ -720,7 +740,7 @@ different feature ranges and identify any variations. The overall
 model accuracy, represented by the red dashed line, serves as a 
 reference for interpreting the results. \\
 
-\subsubsection{Quality over quantity}
+\subsubsection{Complexity over quantity}
 
 Looking at the bin accuracies, we can say that even when having just 1000 functions in 
 bin 40-59 (derived from figure \ref{fig:func_lengths_distr_merged}) we reached around 14\% 
