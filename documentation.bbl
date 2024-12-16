@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{alon}
 Uri Alon, Meital Zilberstein, Omer Levy, and Eran Yahav.
@@ -14,10 +14,26 @@ Uri Alon, Meital Zilberstein, Omer Levy, and Eran Yahav.
 Egor Bogomolov, Vladimir Kovalenko, Yurii Rebryk, Alberto Bacchelli, and Timofey Bryksin.
 \newblock Authorship attribution of source code: A language-agnostic approach and applicability in software engineering, 2021.
 
+\bibitem{compiler_based}
+Alexander Brauckmann, Andr\'{e}s Goens, Sebastian Ertel, and Jeronimo Castrillon.
+\newblock Compiler-based graph representations for deep learning models of code.
+\newblock In {\em Proceedings of the 29th International Conference on Compiler Construction}, CC 2020, page 201–211, New York, NY, USA, 2020. Association for Computing Machinery.
+
+\bibitem{src}
+Richard Cernansky.
+\newblock Function name classifier.
+\newblock \url{https://github.com/RichardCernansky/function_name_classifier}, 2024.
+\newblock Accessed: June 15, 2024.
+
 \bibitem{attention}
 Andrea Galassi, Marco Lippi, and Paolo Torroni.
 \newblock Attention in natural language processing.
 \newblock {\em IEEE Transactions on Neural Networks and Learning Systems}, 32(10):4291--4308, 2021.
+
+\bibitem{gelman}
+Ben Gelman, Bryan Hoyle, Jessica Moore, Joshua Saxe, and David Slater.
+\newblock A language-agnostic model for semantic source code labeling.
+\newblock In {\em Proceedings of the 1st International Workshop on Machine Learning and Software Engineering in Symbiosis}, ASE ’18, page 36–44. ACM, September 2018.
 
 \bibitem{information}
 Xie He, Arash~Habibi Lashkari, Nikhill Vombatkere, and Dilli~Prasad Sharma.
@@ -37,6 +53,11 @@ H.~P. Samoaa, F.~Bayram, P.~Salza, and P.~Leitner.
 \bibitem{sun2023AST}
 Weisong Sun, Chunrong Fang, Yun Miao, Yudu You, Mengzhe Yuan, Yuchen Chen, Quanjun Zhang, An~Guo, Xiang Chen, Yang Liu, and Zhenyu Chen.
 \newblock Abstract syntax tree for programming language understanding and representation: How far are we?, 2023.
+
+\bibitem{improved_rnn}
+Xuekai Sun, Chunling Liu, Weiyu Dong, and Tieming Liu.
+\newblock Improvements to code2vec: Generating path vectors using rnn.
+\newblock {\em Computers and Security}, 132:103322, 2023.
 
 \bibitem{DanielWatson}
 Daniel Watson.

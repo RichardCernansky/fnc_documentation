@@ -137,3 +137,54 @@ ISSN = {2078-2489},
 ABSTRACT = {Over the past few decades, researchers have put their effort and paid significant attention to the authorship attribution field, as it plays an important role in software forensics analysis, plagiarism detection, security attack detection, and protection of trade secrets, patent claims, copyright infringement, or cases of software theft. It helps new researchers understand the state-of-the-art works on authorship attribution methods, identify and examine the emerging methods for authorship attribution, and discuss their key concepts, associated challenges, and potential future work that could help newcomers in this field. This paper comprehensively surveys authorship attribution methods and their key classifications, used feature types, available datasets, model evaluation criteria and metrics, and challenges and limitations. In addition, we discuss the potential future research directions of the authorship attribution field based on the insights and lessons learned from this survey work.},
 DOI = {10.3390/info15030131}
 }
+
+@inproceedings{gelman, series={ASE ’18},
+   title={A language-agnostic model for semantic source code labeling},
+   url={http://dx.doi.org/10.1145/3243127.3243132},
+   DOI={10.1145/3243127.3243132},
+   booktitle={Proceedings of the 1st International Workshop on Machine Learning and Software Engineering in Symbiosis},
+   publisher={ACM},
+   author={Gelman, Ben and Hoyle, Bryan and Moore, Jessica and Saxe, Joshua and Slater, David},
+   year={2018},
+   month=sep, pages={36–44},
+   collection={ASE ’18} }
+
+
+@inproceedings{compiler_based,
+author = {Brauckmann, Alexander and Goens, Andr\'{e}s and Ertel, Sebastian and Castrillon, Jeronimo},
+title = {Compiler-based graph representations for deep learning models of code},
+year = {2020},
+isbn = {9781450371209},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3377555.3377894},
+doi = {10.1145/3377555.3377894},
+abstract = {In natural language processing, novel methods in deep learning, like recurrent neural networks (RNNs) on sequences of words, have been very successful. In contrast to natural languages, programming languages usually have a well-defined structure. With this structure compilers can reason about programs, using graphs such as abstract syntax trees (ASTs) or control-data flow graphs (CDFGs). In this paper, we argue that we should use these graph structures instead of sequences for learning compiler optimization tasks. To this end, we use graph neural networks (GNNs) for learning predictive compiler tasks on two representations based on ASTs and CDFGs. Experiments show that this improves upon the state-of-the-art in the task of heterogeneous OpenCL mapping, while providing orders of magnitude faster inference times, crucial for compiler optimizations. When testing on benchmark suites not included for training, our AST-based model significantly outperforms the state-of-the-art by over 12 percentage points in terms of accuracy. It is the only one to perform clearly better than a random mapping. On the task of predicting thread coarsening factors, we show that all of the methods fail to produce an overall speedup.},
+booktitle = {Proceedings of the 29th International Conference on Compiler Construction},
+pages = {201–211},
+numpages = {11},
+keywords = {LLVM, Graphs, Deep Learning, Compilers},
+location = {San Diego, CA, USA},
+series = {CC 2020}
+}
+
+@misc{src,
+  author = {Richard Cernansky},
+  title = {Function name classifier},
+  year = {2024},
+  howpublished = {\url{https://github.com/RichardCernansky/function_name_classifier}},
+  note = {Accessed: June 15, 2024}
+}
+
+
+@article{improved_rnn, 
+  title = {Improvements to code2vec: Generating path vectors using RNN},
+  journal = {Computers and Security},
+  volume = {132},
+  pages = {103322},
+  year = {2023},
+  issn = {0167-4048},
+  doi = {https://doi.org/10.1016/j.cose.2023.103322},
+  url = {https://www.sciencedirect.com/science/article/pii/S0167404823002328},
+  author = {Xuekai Sun and Chunling Liu and Weiyu Dong and Tieming Liu},
+}

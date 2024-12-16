@@ -14,6 +14,7 @@
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{hyperref}
 
 
 \usepackage{booktabs}
@@ -200,9 +201,98 @@ This encoding allows us to map the indices to the embedding space. The embedding
 \subsection{Why is this approach used?}
 It has shown that the tree traversal that is incorporated in the path-context successfully captures the structural, syntactic and semantic value of the source code\cite{alon}. The problem of assigning function names using code2vec model
 can be stated as learning the information connection between the path contexts and the function names. It is important to note that \textbf{not all path context contribute with the same informative value} to the resulting prediction of the classifier. That is why \textbf{Attention mechanism} \cite{attention} is added to the network to give the path contexts in the function's bag their corresponding weight when predicting the name. This way we can focus on the important path contexts that differentiate syntactically closely related functions from one another.
+\\ \\
+So what we would like to construct is a predictive task for a model with high level overview like this: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2.5cm, height=3.5cm]{figures/high_level_prediciton_task.png}
+    \caption{\cite{compiler_based} High level overview of the function classification preditction task.}
+    \label{fig:predictive_task}
+\end{figure}
+
+\chapter{Re-implementation of code2vec NN classifier for C language functions}
+
+\section{Model Architecture}
+In this section, we would like to provide an explanation of the model that was used to process the data and perform the predictions that are observed. This includes a detailed description of the architecture, the reasoning behind the choice of components, and the methodology employed for training and evaluation.
+
+\section*{Model: "functional"}
+As stated before, we decided to use the Attention based neural network classifier to predict C function name from
+its source code. The model is constructed using tensorflow.keras framework.
+
+\subsection{Inputs}
+The model has 3 input layers. One for each part of the path context \ref{path_context_example} and they are represented as
+vectors of indices to their respective vocabularies. The shape is decided by the maximum
+number of distinct path contexts from the set of all functions in our dataset (the missing values are
+padded with zeros).
+
+\subsection{Input embeddings}
+For each input layer there is also corresponding embedding layer and the embeddings are obtained
+using the numerical index representations. Then they are concatenated into one single vector
+of dimensions (1, 3d) where d is the dimension of single embedding row.
+
+\subsection{Dense layer}
+The concatenated vector is then multiplied with weight matrix of dimensions $(y, 3d)$ to obtain
+vector of dimension $y$, where $y$ is the size of tags set. Tanh function is applied to this
+transformed vector to introduce non-linearity.
+
+\subsection{Attention-weight mechanism}
+Attention weight vector is then applied to get the portion (importance) of each path context
+by multiplying the attention weight $a_i$ with path context $c_i$ to get the vector $v_a$.  
+
+\subsection{Softmax}
+The final vector of probabilities is then obtained by multiplying each tag's entry in
+embedding layer of tags $(y, 1)$ with the vector $v^T$ $(1,y)$ and applying the softmax
+over all the tags in tag set. \\ \\
+This foward process is depicted in the following flowchart:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm, height=7cm]{figures/code2vec_model_visual.png}
+    \caption{Code2vec \cite{code2vec} neural network model flowchart.}
+    \label{fig:code2vec_model_visual}
+\end{figure}
 
 
-\chapter{Re-implementation of code2vec NN classifier}
+The model architecture is displayed in detail below in the table.
+\begin{longtable}{|p{4cm}|p{5cm}|r|p{4cm}|}
+    \hline
+    \textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#} & \textbf{Connected to} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#} & \textbf{Connected to} \\
+    \hline
+    \endhead
+    value1\_input (InputLayer) & (None, 283881) & 0 & - \\
+    \hline
+    path\_input (InputLayer) & (None, 283881) & 0 & - \\
+    \hline
+    value2\_input (InputLayer) & (None, 283881) & 0 & - \\
+    \hline
+    value\_embedding (Embedding) & (None, 283881, 128) & 546,176 & value1\_input[0][0], value2\_input[0][0] \\
+    \hline
+    path\_embedding (Embedding) & (None, 283881, 128) & 2,468,480 & path\_input[0][0] \\
+    \hline
+    concatenate (Concatenate) & (None, 283881, 384) & 0 & value\_embedding[0][0], path\_embedding[0][0], value\_embedding[1][0] \\
+    \hline
+    dense (Dense) & (None, 283881, 128) & 49,280 & concatenate[0][0] \\
+    \hline
+    dense\_1 (Dense) & (None, 283881, 1) & 129 & dense[0][0] \\
+    \hline
+    weighted\_context\_layer (WeightedContextLayer) & (None, 128) & 0 & dense\_1[0][0], dense[0][0] \\
+    \hline
+    tag\_embedding\_matrix\_layer (TagEmbeddingMatrixLayer) & (None, 189) & 24,192 & weighted\_context\_layer[0] \\
+    \hline
+    softmax (Softmax) & (None, 189) & 0 & tag\_embedding\_matrix\_layer \\
+    \hline
+    \end{longtable}
+    
+    \noindent \textbf{Total params:} 3,088,257 (11.78 MB) \\
+    \textbf{Trainable params:} 3,088,257 (11.78 MB) \\
+    \textbf{Non-trainable params:} 0 (0.00 B)
+    
+
 
 \section{Exploratory data analysis}
 \label{item:EDA}
@@ -245,7 +335,7 @@ tree (\ref{verbatim:AST_example}) and implemented a straightforward algorithm in
     \end{algorithmic}
     \end{algorithm}
     
-From the tree constructed like this, we can extract the leaf node-to-node paths, that we will 
+From the tree constructed like this, we could extract the leaf node-to-node paths, that we will 
 use for training the attention-weight neural network classifier.
 
 
@@ -287,7 +377,9 @@ As the dataset originates from competitive programming contests, its characteris
     \end{enumerate}
 \end{enumerate}
 
-An initial analysis of the function data can involve visualizing distributions of quantitative features (f.e. function names).
+An initial analysis of the function data can involve visualizing distributions of quantitative features (f.e. function names)
+as did Ben Gelman \cite{gelman} when classfying functions into Stack Overflow tags, that serve as labeling system.
+
 
 \subsubsection{Function name frequency}
 \begin{figure}[H]
@@ -450,87 +542,9 @@ In the entire training pipeline, there are multiple stages where some of the abo
 \end{enumerate}
 
 
-\section{Model Architecture}
-In this section, we would like to provide an explanation of the model that was used to process the data and perform the predictions that are observed. This includes a detailed description of the architecture, the reasoning behind the choice of components, and the methodology employed for training and evaluation.
-
-\section*{Model: "functional"}
-As stated before, we decided to use the Attention based neural network classifier to predict C function name from
-its source code. The model is constructed using tensorflow.keras framework.
-
-\subsection{Inputs}
-The model has 3 input layers. One for each part of the path context \ref{path_context_example} and they are represented as
-vectors of indices to their respective vocabularies. The shape is decided by the maximum
-number of distinct path contexts from the set of all functions in our dataset (the missing values are
-padded with zeros).
-
-\subsection{Input embeddings}
-For each input layer there is also corresponding embedding layer and the embeddings are obtained
-using the numerical index representations. Then they are concatenated into one single vector
-of dimensions (1, 3d) where d is the dimension of single embedding row.
-
-\subsection{Dense layer}
-The concatenated vector is then multiplied with weight matrix of dimensions $(y, 3d)$ to obtain
-vector of dimension $y$, where $y$ is the size of tags set. Tanh function is applied to this
-transformed vector to introduce non-linearity.
-
-\subsection{Attention-weight mechanism}
-Attention weight vector is then applied to get the portion (importance) of each path context
-by multiplying the attention weight $a_i$ with path context $c_i$ to get the vector $v_a$.  
-
-\subsection{Softmax}
-The final vector of probabilities is then obtained by multiplying each tag's entry in
-embedding layer of tags $(y, 1)$ with the vector $v^T$ $(1,y)$ and applying the softmax
-over all the tags in tag set. \\ \\
-This foward process is depicted in the following flowchart:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=12cm, height=7cm]{figures/code2vec_model_visual.png}
-    \caption{Code2vec \cite{code2vec} neural network model flowchart.}
-    \label{fig:code2vec_model_visual}
-\end{figure}
-
-
-The model architecture is displayed in detail below in the table.
-\begin{longtable}{|p{4cm}|p{5cm}|r|p{4cm}|}
-\hline
-\textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#} & \textbf{Connected to} \\
-\hline
-\endfirsthead
-\hline
-\textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#} & \textbf{Connected to} \\
-\hline
-\endhead
-value1\_input (InputLayer) & (None, 723003) & 0 & - \\
-\hline
-path\_input (InputLayer) & (None, 723003) & 0 & - \\
-\hline
-value2\_input (InputLayer) & (None, 723003) & 0 & - \\
-\hline
-value\_embedding (Embedding) & (None, 723003, 128) & 1,081,216 & value1\_input[0][0], value2\_input[0][0] \\
-\hline
-path\_embedding (Embedding) & (None, 723003, 128) & 3,828,992 & path\_input[0][0] \\
-\hline
-concatenate (Concatenate) & (None, 723003, 384) & 0 & value\_embedding[0][0], path\_embedding[0][0], value\_embedding[1][0] \\
-\hline
-dense (Dense) & (None, 723003, 128) & 49,280 & concatenate[0][0] \\
-\hline
-dense\_1 (Dense) & (None, 723003, 1) & 129 & dense[0][0] \\
-\hline
-weighted\_context\_layer (WeightedContextLayer) & (None, 128) & 0 & dense\_1[0][0], dense[0][0] \\
-\hline
-tag\_embedding\_matrix\_layer (TagEmbeddingMatrixLayer) & (None, 740) & 94,720 & weighted\_context\_layer[0] \\
-\hline
-softmax (Softmax) & (None, 740) & 0 & tag\_embedding\_matrix\_layer \\
-\hline
-\end{longtable}
-
-\noindent \textbf{Total params:} 5,054,337 (19.28 MB) \\
-\textbf{Trainable params:} 5,054,337 (19.28 MB) \\
-\textbf{Non-trainable params:} 0 (0.00 B)
-
-
 \section{Training pipeline}
+This section describes the source code used for data extraction, training and evaluation of the model described 
+above. The source code is available on this link \cite{src}
 
 \subsection{Directory structure}
 The training pipeline of this project is defined in the directory \texttt{./training\_pipeline:}
@@ -632,7 +646,7 @@ illustrate the complete function name classification process, from data
 \label{item:chapter_testing}
 
 \section{Fundamental Data Preprocessing}
-Initally, we droppe functions with names occurring $\leq 10$ times and filter out poorly named functions (ref. \ref{item:poorly_named_functions}).
+Initally, we dropped functions with names occurring $\leq 10$ times and filter out poorly named functions (ref. \ref{item:poorly_named_functions}).
 Duplicate function strings were also removed to account for redundancies
 commonly occuring in competition-style programming, where template-based
 helper functions are frequently reused.
@@ -706,12 +720,12 @@ In later section, we will try to reduce this overfit by preprocessing the data
 with taking into account these assumptions.
 
 \subsection{Testing}
-
+\cite{improved_rnn}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=8cm, height=4cm]{figures/testing/agg_average_metrics_plot.png}
-    \caption{Average testing metrics across folds.}
+    \caption{Our model's average testing metrics across folds.}
     \label{fig:average_testing_metrics}
 \end{figure}
 
@@ -780,7 +794,6 @@ while their cardinality is only a 20\% of those with AST depth spreading from 4-
 
 
 \section{Extensive Data Preprocessing}
-
 
 
 
